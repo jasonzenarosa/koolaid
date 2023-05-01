@@ -6,6 +6,15 @@ async function load() {
 
     const posts = document.querySelector(".posts-container");
 
+    content.sort((b, a) => {
+        const dateComparison = b.date.localeCompare(a.date);
+        if (dateComparison !== 0) {
+        return dateComparison;
+        } else {
+        return b.time.localeCompare(a.time);
+        }
+    });
+
     for (const post of content) {
         const newPost = createPost(post.date, post.time, post.content)
         posts.insertBefore(newPost, posts.firstChild);
